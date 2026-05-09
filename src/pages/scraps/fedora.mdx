@@ -1,0 +1,51 @@
+---
+layout: ../../layouts/ScrapPostLayout.astro
+title: Fedoraに移行する
+pubDate: 2026, May 09
+---
+import ScrapBlock from '../../components/ScrapBlock.astro';
+
+<ScrapBlock date='2026-05-09'>
+Pop!OSをいれていたが、Fcitxの変換の表示位置がずれる問題を修正できなかったためFedoraに乗り換えた。
+乗り換えた際の手順をまとめておく。
+</ScrapBlock>
+
+<ScrapBlock date='2026-05-09'>
+パッケージマネージャの構成は以下のようにする。
+```md
+- dnf: システムとGo等で書かれたツール 
+- rustup: rust, cargoの管理 
+  - cargo: zoxideなどのCLIツールの管理
+    - Sheldon: zsh pluginの管理
+- flatpak: GUIツールの管理
+  - Extention-Manager: GNOME拡張機能の管理
+- pnpm: Node.js環境とパッケージの管理
+- uv: Python環境の管理
+```
+NeovimのPluginはLazyで管理するが、Lazy自体が自動でインストールされるため記載していない。
+rustup、pnpm、uvのインストール、各種CLIツールのインストール、Extention Managerのインストールを行う必要がある。
+また、Input Method Panelを導入する必要がある。
+Tiling Managerについては要検討。
+また、dnf経由でDevelopment ToolsグループとClangをインストールした。
+GoコンパイラとNeovimについては、バイナリを直接インストールし、手動でアップデートする。
+</ScrapBlock>
+
+<ScrapBlock date='2026-05-09'>
+日本語入力の設定について記載。
+dnf経由でfcitx5、fcitx-configtoolをインストールした。
+fcitx-configtoolを開いたら勝手にfcitxが有効化されたため、とりあえずそのまま使用している。
+GUIでMozcとEnglish Keyboardを設定した。
+また、起動時に自動的にFcitx5を実行してもらうために、/usr/share/applications配下にある.desktopファイルを~/.config/autostart/にコピーした。
+</ScrapBlock>
+
+<ScrapBlock date='2026-05-09'>
+GNOMEについてもいくつか設定を行ったので記載。
+フォントを少し大きくするために、以下のコマンドを実行。
+```bash
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.15
+```
+GUIでダークモード、背景を設定。
+指紋リーダについては、Fedora40ではout-of-the-boxで問題なく使用できた。
+fprintdがデフォルトでインストールされ、動作しているため、GNOMEの設定から指紋を追加することで動作。
+指紋認証リーダは27c6:63ac。
+</ScrapBlock>
