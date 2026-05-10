@@ -49,3 +49,12 @@ GUIでダークモード、背景を設定。
 fprintdがデフォルトでインストールされ、動作しているため、GNOMEの設定から指紋を追加することで動作。
 指紋認証リーダは27c6:63ac。
 </ScrapBlock>
+
+<ScrapBlock date='2026-05-10'>
+Caps LockをCtrlとして扱うために、GNOMEの設定を導入。
+```bash
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+```
+参考: https://qiita.com/GithubUserXyz/items/50356d53dd6693fa0963
+</ScrapBlock>
+
