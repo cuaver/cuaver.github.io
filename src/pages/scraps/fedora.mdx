@@ -58,3 +58,15 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 参考: https://qiita.com/GithubUserXyz/items/50356d53dd6693fa0963
 </ScrapBlock>
 
+<ScrapBlock date='2026-05-14'>
+仮想デスクトップをVimライクなキーバインドで操作できると便利だと思ったので、設定を導入した。
+```bash
+# コンフリクトする設定に空の配列を割り当て無効化
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "[]"
+gsettings set org.gnome.desktop.wm.keybindings minimize "[]"
+
+# 設定を導入
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>h']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
+```
+</ScrapBlock>
